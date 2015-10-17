@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from distutils.core import setup, Extension
+from distutils.sysconfig import get_config_vars
 
 setup(
     name = 'zbar',
@@ -39,6 +40,10 @@ setup(
                 'scanner.c',
                 ],
             libraries = [ 'zbar' ],
+            library_dirs=["""../zbar"""],
+            include_dirs=[get_config_vars('INCLUDEDIR'),
+                          get_config_vars('INCLUDEPY'),
+                          """../include"""]
         ),
     ],
 )
